@@ -1,0 +1,51 @@
+<div class='container'>
+  <h1>Análise do Texto</h1>
+  <div class='row'>
+    <div class='col-6'>
+      <h3>Dados Gerais</h3>
+      <div class="gerais">
+        <p>O texto é composto por:</p>
+        <div class="data">
+          <p class="dado"><%="#{@paragraph.length} "%></p>
+          <p><%=" parágrafos."%></p>
+        </div>
+        <div class="data">
+          <p class="dado"><%="#{@words.length} "%></p>
+          <p><%=" palavras."%></p>
+        </div>
+        <div class="data">
+          <p class="dado"><%="#{@input.length} "%></p>
+          <p><%=" caracteres."%></p>
+        </div>
+      </div>
+      <br>
+      <h3>Palavras repetidas no texto <span style="font-size:14px">(4 letras ou mais)</span></h3>
+      <div class = "palavras">
+        <ul>
+          <%@oncemore.each do |x|%>
+          <li><%="A palavra '#{x[0]}' aparece #{x[1]} #{x[1] < 2 ? 'vez' : 'vezes'} no texto"%></li>
+          <%end%>
+        </ul>
+      </div>
+      <br>
+    </div>
+    <div class="col-6">
+      <h5><%="Existem #{@big_words.size} palavras com mais de 7 letras no texto."%></h5>
+      <div class="bigbox">
+        <%@otbg_words.each do |x|%>
+        <%="#{x}, "%>
+        <%end%>
+        <%="#{@last}."%>
+      </div>
+      <div class="sinonimos">
+        <h5>Buscar sinônimos para uma palavra</h5>
+        <p>Digite ou cole uma palavra e clique em buscar para ver sinônimos</p>
+        <form action='/sinon'>
+          <input type="text" id="sinon" name="sinon">
+          <button type="submit" id="btn-sinon" name="btn-sinon" formtarget="sinon">Buscar</button>
+        </form>
+      </div>
+      <iframe name="sinon"></iframe>
+    </div>
+  </div>
+</div>

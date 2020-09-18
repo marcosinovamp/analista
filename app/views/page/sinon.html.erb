@@ -1,0 +1,11 @@
+<div class='container frame'>
+  <h1><%=params[:sinon].capitalize%></h1>
+  <div class="result">
+    <%="#{@first_sinon.capitalize}, "%>
+    <%@sinonimos.each do |x|%>
+    <%="#{x}, "%>
+    <%end%>
+    <%="#{@last_sinon}."%>
+  <div>
+</div>
+
