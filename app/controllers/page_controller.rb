@@ -7,7 +7,8 @@ class PageController < ApplicationController
 
   def analysis
     @input = params[:txt]
-    @paragraph = @input.split("\n").reject { |x| x.empty? }
+    @paragraph = @input.split("\n").reject { |x| x.blank?}
+    @charcount = @paragraph.join('').length
     @words = []
     @paragraph.each { |x| @words << x.split(' ') }
     @words = @words.flatten.map { |x| x.gsub(':', '').gsub('.','').tr('0-9', '').gsub('[', '').gsub(']', '').gsub('/','').gsub("\"","").gsub('(', '').gsub(')', '').gsub("!","").gsub("?","").gsub(";", "").gsub("“", "").gsub("”", "").gsub('…','') }
@@ -39,5 +40,12 @@ class PageController < ApplicationController
     @sinonimos = inicio.uniq.reject { |x| x.length >= 15 }
     @last_sinon = @sinonimos.pop
     @first_sinon = @sinonimos.shift
+  end
+
+  def dicio
+    plvr = params[:plvr].gsub('à', 'a').gsub('á', 'a').gsub('ã', 'a').gsub('â', 'a').gsub('é', 'e').gsub('ê', 'e').gsub('í', 'i').gsub('ó', 'o').gsub('ô', 'o').gsub('õ', 'o').gsub('ú', 'u').gsub('ç', 'c')
+    urld = "https://www.dicio.com.br/#{plvr}"
+    html_txt = Nokogiri::HTML(open(urld))
+    @defin = html_txt.xpath("//*[contains(@class, 'textonovo')]//span[not(@class)]")
   end
 end

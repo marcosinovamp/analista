@@ -1,0 +1,10 @@
+<div class='container frame'>
+  <h1><%=params[:plvr].capitalize%></h1>
+  <div class="result">
+    <ol>
+      <%@defin.each do |x|%>
+      <li><%=x.text%></li>
+      <%end%>
+    </ol>
+  </div>
+</div>

@@ -18,6 +18,13 @@
           <p><%=" caracteres."%></p>
         </div>
       </div>
+      <%@paragraph.each do |x|%>
+      <%pctg = (x.length.to_f*100/@charcount.to_f).round(2)%>
+      <p id="partxt"><%=@paragraph.index(x) + 1%>º parágrafo.</p>
+        <div class="barra">
+          <div class="fill" style="width:<%=pctg%>%"><%=pctg%>% do texto</div>
+        </div>
+      <%end%>
       <br>
       <h3>Palavras repetidas no texto <span style="font-size:14px">(4 letras ou mais)</span></h3>
       <div class = "palavras">
@@ -33,9 +40,10 @@
       <h5><%="Existem #{@big_words.size} palavras com mais de 7 letras no texto."%></h5>
       <div class="bigbox">
         <%@otbg_words.each do |x|%>
-        <%="#{x}, "%>
+        <%@address="/sinon?sinon=#{x}"%>
+        <span><a target="sinon" href=<%=@address%>><%=x%></a>, </span>
         <%end%>
-        <%="#{@last}."%>
+        <span><a href=<%="/sinon?sinon=#{@last}"%>><%=@last%></a>.</span>
       </div>
       <div class="sinonimos">
         <h5>Buscar sinônimos para uma palavra</h5>
@@ -46,6 +54,20 @@
         </form>
       </div>
       <iframe name="sinon"></iframe>
+      <br>
+       <div class="sinonimos">
+        <h5>Buscar significado das palavras</h5>
+        <p>Digite ou cole uma palavra e clique em buscar para ver sua definição</p>
+        <form action='/dicio' target=_blank>
+          <input type="text" id="plvr" name="plvr">
+          <button type="submit" id="btn-dicio" name="btn-dicio" formtarget="defin">Buscar</button>
+        </form>
+      </div>
+      <br>
+      <iframe name="defin"></iframe>
+      <br>
+      <br>
     </div>
   </div>
 </div>
+

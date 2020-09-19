@@ -91,6 +91,24 @@ form #texto{
   box-shadow: 2px 1px #081c15;
 }
 
+.barra{
+  background-color:#6d6875;
+  width:100%;
+  padding:0px;
+  border-radius:5px;
+}
+
+.fill{
+  background-color:red;
+  color:white;
+  padding:10px;
+  text-align:center;
+  font-size: 12px;
+  border-radius:5px;
+  white-space: nowrap;
+  font-weight:700;
+}
+
 .data{
   display:flex;
   flex-direction: row;
@@ -189,5 +207,10 @@ form #texto{
 
 #btn-sinon:hover{
   background-color: #adb5bd;
+}
+
+#partxt{
+  margin-top:10px;
+  margin-bottom:0px;
 }
 
